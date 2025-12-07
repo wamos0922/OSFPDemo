@@ -81,3 +81,81 @@ def run_manual_edit(img: Image.Image) -> Image.Image:
     return img
 
 # Interface
+def main():
+    INPUT_FILE = "images/sample_input.png"
+    
+    # Ensure directories exist
+    os.makedirs("images", exist_ok=True)
+    os.makedirs("outputs", exist_ok=True)
+    
+    # Create sample image if needed
+    create_dummy_image(INPUT_FILE)
+    
+    # Check if input exists
+    if not os.path.exists(INPUT_FILE):
+        print(f" Error: Input file '{INPUT_FILE}' is missing.")
+        print("Please place an image at 'images/sample_input.png'")
+        return
+    
+    try:
+        # Load original image
+        original_img = load_image(INPUT_FILE)
+        
+        # Display menu
+        print("\n" + "=" * 70)
+        print(" " * 20 + "ossimg Library Demo")
+        print("=" * 70)
+        print("\nChoose an option:\n")
+        print("  1: Apply 'Golden Hour' Template")
+        print("  2: Apply 'Gritty Contrast' Template")
+        print("  3: Apply 'Pastel Matte' Template")
+        print("  4: Manual Edit Mode")
+        print("=" * 70)
+        
+        choice = input("Enter your choice (1-4): ").strip()
+        
+        final_img = None
+        output_suffix = None
+        
+        # Process based on choice
+        if choice == '1':
+            print("\n Applying: Golden Hour Template...")
+            final_img = apply_golden_hour(original_img)
+            output_suffix = "GOLDEN_HOUR"
+            
+        elif choice == '2':
+            print("\n Applying: Gritty Contrast Template...")
+            final_img = apply_gritty_contrast(original_img)
+            output_suffix = "GRITTY_CONTRAST"
+            
+        elif choice == '3':
+            print("\n Applying: Pastel Matte Template...")
+            final_img = apply_pastel_matte(original_img)
+            output_suffix = "PASTEL_MATTE"
+            
+        elif choice == '4':
+            final_img = run_manual_edit(original_img)
+            output_suffix = None  # Already saved in run_manual_edit()
+            
+        else:
+            print("\n Invalid choice. Please enter a number between 1-4.")
+            return
+        
+        # Save template results
+        if final_img and output_suffix:
+            output_name = f"outputs/output_FINAL_{output_suffix}.png"
+            final_img.save(output_name)
+            print(f"\n Success! Saved as: {output_name}")
+        
+        print("\n" + "=" * 70)
+        print("Demo completed! Check the 'outputs/' folder for results.")
+        print("=" * 70 + "\n")
+        
+    except Exception as e:
+        print(f"\n Error during processing: {e}")
+        import traceback
+        traceback.print_exc()
+
+
+if __name__ == "__main__":
+    main()
