@@ -1,9 +1,110 @@
 Demonstration Outputs
 
-The `demo.py` script generates two types of output: intermediate previews for manual processing, and final images for both manual and template processing.
+##  About
+
+This interactive demo showcases all features of the ossimg library:
+
+1. **3 Preset Templates** - One-click artistic filters
+2. **Manual Editing Mode** - Custom adjustments with 4 parameters
+3. **Step-by-Step Previews** - See how each adjustment affects your image
+---
+##  Quick Start
+
+### Method 1: Quick Install (Recommended)
+```bash
+# 1. Install the library
+pip install git+https://github.com/wamos0922/OSFPLibrary.git
+
+# 2. Clone the demo
+git clone https://github.com/wamos0922/OSFPDemo.git
+cd OSFPDemo
+
+# 3. Run the demo
+python demo.py
+```
+### Method 2: Development Setup
+
+For team members working on both repositories:
+```bash
+# 1. Clone both repos side-by-side
+mkdir ossimg-project
+cd ossimg-project
+
+git clone https://github.com/wamos0922/OSFPLibrary.git
+git clone https://github.com/wamos0922/OSFPDemo.git
+
+# 2. Install library in editable mode
+cd OSFPLibrary
+pip install -e .
+cd ..
+
+# 3. Run demo
+cd OSFPDemo
+python demo.py
+```
+---
+## Usage
+
+### Interactive Menu
+
+When you run the demo:
+```
+======================================================================
+                    ossimg Library Demo
+======================================================================
+
+Choose an option:
+
+  1: Apply 'Golden Hour' Template
+  2: Apply 'Gritty Contrast' Template
+  3: Apply 'Pastel Matte' Template
+  4: Manual Edit Mode
+
+======================================================================
+Enter your choice (1-4):
+```
+
+### Template Mode (Options 1-3)
+
+Simply choose a number:
+```bash
+Enter your choice: 1
+
+🌅 Applying: Golden Hour Template...
+✅ Success! Saved as: outputs/output_FINAL_GOLDEN_HOUR.png
+```
+
+### Manual Edit Mode (Option 4)
+
+Configure 4 parameters:
+```bash
+Enter your choice: 4
+
+[1/4] SATURATION
+Enter Saturation Factor (Default: 1.00): 1.3
+
+[2/4] SHADOWS
+Enter Shadows Amount (Default: 0.00): 0.4
+
+[3/4] BRIGHTNESS
+Enter Brightness Factor (Default: 1.00): 1.1
+
+[4/4] SHARPNESS
+Enter Sharpness Factor (Default: 1.00): 1.2
+
+📸 Step 1: SATURATION   → outputs/preview_01_saturation.png
+📸 Step 2: SHADOWS      → outputs/preview_02_shadows.png
+📸 Step 3: BRIGHTNESS   → outputs/preview_03_brightness.png
+📸 Step 4: SHARPNESS    → outputs/preview_04_sharpness.png
+
+🎉 Final result: outputs/output_FINAL_MANUAL_EDIT.png
+```
 
 ---
-***Folders***
+
+## 📁 Output Files
+
+### Folders
 1. images/
 
 - This is where you put your input photo
@@ -18,28 +119,34 @@ The `demo.py` script generates two types of output: intermediate previews for ma
 
 - If you run the demo again, new files will replace the old ones
 ---
+### Generated Files
 
-===
-***Output***
-1. Intermediate Previews (Manual Feature Chain)
+**Template Outputs:**
+- `output_FINAL_GOLDEN_HOUR.png` - Warm sunset look
+- `output_FINAL_GRITTY_CONTRAST.png` - High contrast style  
+- `output_FINAL_PASTEL_MATTE.png` - Soft dreamy effect
 
-The script applies ***four distinct manual features*** sequentially to the input image, saving a preview after each step. This demonstrates the effect of each feature cumulatively.
+**Manual Edit Outputs:**
+- `preview_01_saturation.png` - After saturation adjustment
+- `preview_02_shadows.png` - After shadow adjustment
+- `preview_03_brightness.png` - After brightness adjustment
+- `preview_04_sharpness.png` - After sharpness adjustment
+- `output_FINAL_MANUAL_EDIT.png` - Final combined result
 
-| File Name | Description | Feature Applied |
-| :--- | :--- | :--- |
-| `preview_01_saturation.png` | Result after applying the first feature. | **Saturation Adjustment** |
-| `preview_02_shadows.png` | Result after applying the second feature. | **Shadows/Highlights Adjustment** |
-| `preview_03_brightness.png` | Result after applying the third feature. | **Brightness Adjustment** |
-| `preview_04_sharpness.png` | Result after applying the final fourth feature. | **Sharpness Adjustment** |
+---
+## Using Your Own Images
 
-2. Final Outputs (Templates & Final Manual Result)
+### Method 1: Replace Sample
+```bash
+cp your_photo.jpg images/sample_input.png
+python demo.py
+```
 
-The final saved images include the three prepared templates and the final output of the four-step manual chain.
+### Method 2: Modify Script
 
-| File Name | Type | Description |
-| :--- | :--- | :--- |
-| `output_FINAL_MANUAL.png` | Manual Result | The final output of the 4-step feature chain (identical to `preview_04_sharpness.png`). |
-| `output_FINAL_GOLDEN.png` | Template Result | Applies the **"Golden Hour"** template (e.g., increased warmth and contrast). |
-| `output_FINAL_GRITTY.png` | Template Result | Applies the **"Gritty Film"** template (e.g., high contrast and reduced color). |
-| `output_FINAL_PASTEL.png` | Template Result | Applies the **"Soft Pastel"** template (e.g., lower saturation and brightness). |
-===
+Edit `demo.py` line 173:
+```python
+INPUT_FILE = "images/your_photo.jpg"  # Change filename
+```
+
+---
