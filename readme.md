@@ -1,5 +1,9 @@
 Demonstration Outputs
 
+[![PyPI version](https://badge.fury.io/py/ossimg.svg)](https://pypi.org/project/ossimg/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+
 ##  About
 
 This interactive demo showcases all features of the ossimg library:
@@ -10,7 +14,19 @@ This interactive demo showcases all features of the ossimg library:
 ---
 ##  Quick Start
 
-### Method 1: Quick Install (Recommended)
+### Method 1: From PyPI (Recommended)
+```bash
+#1. Install the library
+pip install ossimg==2.0.0
+
+# 2. Clone the demo
+git clone https://github.com/wamos0922/OSFPDemo.git
+cd OSFPDemo
+
+# 3. Run the demo
+python demo.py
+```
+### Method 2: Quick Install (Recommended)
 ```bash
 # 1. Install the library
 pip install git+https://github.com/wamos0922/OSFPLibrary.git
@@ -22,7 +38,7 @@ cd OSFPDemo
 # 3. Run the demo
 python demo.py
 ```
-### Method 2: Development Setup
+### Method 3: Development Setup
 
 For team members working on both repositories:
 ```bash
@@ -144,7 +160,7 @@ python demo.py
 
 ### Method 2: Modify Script
 
-Edit `demo.py` line 173:
+Edit `demo.py` line 126:
 ```python
 INPUT_FILE = "images/your_photo.jpg"  # Change filename
 ```
